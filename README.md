@@ -1,15 +1,15 @@
 # README
 
-[![Build Status](https://travis-ci.org/RequestLab/xiti-analytics.svg)](http://travis-ci.org/RequestLab/xiti-analytics)
+[![Build Status](https://travis-ci.org/RequestLab/estat.svg)](http://travis-ci.org/RequestLab/estat)
 
-The RequestLab Xiti Analytics library provides a way to use the AT Internet Analytics Data Query API.
+The RequestLab Estat library provides a way to use the Mediametrie Estat API.
 It's inspired by the [Wid'op Google Analytics library](https://github.com/widop/google-analytics)
 
 ## Documentation
 
 ### Installation
 
-To install the RequestLab Xiti Analytics library, you will need [Composer](http://getcomposer.org). It's a PHP 5.3+
+To install the RequestLab Estat library, you will need [Composer](http://getcomposer.org). It's a PHP 5.3+
 dependency manager which allows you to declare the dependent libraries your project needs and it will install &
 autoload them for you.
 
@@ -25,12 +25,12 @@ $ sudo mv composer.phar /usr/local/bin/composer
 #### Define dependencies
 
 Create a ``composer.json`` file at the root directory of your project and simply require the
-``requestlab/xiti-analytics`` package:
+``requestlab/estat`` package:
 
 ```
 {
     "require": {
-        "requestlab/xiti-analytics": "*"
+        "requestlab/estat": "*"
     }
 }
 ```
@@ -54,34 +54,33 @@ So easy, you just have to require the generated autoload file and you are alread
 
 require __DIR__.'/vendor/autoload.php';
 
-use RequestLab\XitiAnalytics;
+use RequestLab\Estat;
 
 // ...
 ?>
 ```
 
-The RequestLab Xiti Analytics library follows the [PSR-0 Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md).
+The RequestLab Estat library follows the [PSR-0 Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md).
 If you prefer install it manually, it can be autoload by any convenient autoloader.
 
 ### Usage
 
 #### Query
 
-First, in order to request the ATInternet Analytics Query service, simply create a request and configure it according to your needs:
+First, in order to request the Estat Query service, simply create a request and configure it according to your needs:
 
 ``` php
 <?php
 
-use RequestLab\XitiAnalytics\Query;
+use RequestLab\Estat\Query;
 
 $query = new Query();
 
 $query->setStartDate(new \DateTime('-1 Day'));
 $query->setEndDate(new \DateTime('-1 Day'));
 
-$query->setSpace(99999);
-$query->setColums(array('m_visits', 'm_page_loads'));
-$query->setSort(array('-m_visits'));
+$query->setSerial(254054201858);
+$query->setIndicator('WEB_4NIVEAUX_NIVEAU4');
 
 ?>
 ```
@@ -93,7 +92,7 @@ A client allows you to request the service with your login and password.
 ``` php
 <?php
 
-use RequestLab\XitiAnalytics\Client;
+use RequestLab\Estat\Client;
 
 $client = new Client();
 $client->setLogin('Login');
@@ -107,7 +106,7 @@ $client->setPassword('Password');
 ``` php
 <?php
 
-use RequestLab\XitiAnalytics\Service;
+use RequestLab\Estat\Service;
 
 $service = new Service($client);
 $client->query($query);
@@ -117,13 +116,12 @@ $client->query($query);
 
 #### Response
 
-The response is a RequestLab\XitiAnalytics\Response object which wraps all available informations:
+The response is a RequestLab\Estat\Response object which wraps all available informations:
 
 ``` php
 <?php
 
-$columns = $response->getColumns();
-$rows    = $response->getRows();
+$data    = $response->getData();
 $totals  = $response->getTotals();
 
 ?>
@@ -131,7 +129,7 @@ $totals  = $response->getTotals();
 
 ## Testing
 
-The library is fully unit tested by [PHPUnit](http://www.phpunit.de/). To execute the test suite, check the travis [configuration](https://github.com/RequestLab/xiti-analytics/blob/master/.travis.yml).
+The library is fully unit tested by [PHPUnit](http://www.phpunit.de/). To execute the test suite, check the travis [configuration](https://github.com/RequestLab/estat/blob/master/.travis.yml).
 
 ## Contribute
 
@@ -139,6 +137,6 @@ The library is open source, propose a PR!
 
 ## License
 
-The RequestLab Xiti Analytics library is under the MIT license. For the full copyright and license information, please
-read the [LICENSE](https://github.com/RequestLab/xiti-analytics/blob/master/LICENSE) file that was distributed with this
+The RequestLab Estat library is under the MIT license. For the full copyright and license information, please
+read the [LICENSE](https://github.com/RequestLab/estat/blob/master/LICENSE) file that was distributed with this
 source code.
