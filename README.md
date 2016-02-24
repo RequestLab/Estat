@@ -1,6 +1,6 @@
 # README
 
-[![Build Status](https://travis-ci.org/RequestLab/estat.svg)](http://travis-ci.org/RequestLab/estat)
+[![Build Status](https://travis-ci.org/RequestLab/Estat.svg)](http://travis-ci.org/RequestLab/estat)
 
 The RequestLab Estat library provides a way to use the Mediametrie Estat API.
 It's inspired by the [Wid'op Google Analytics library](https://github.com/widop/google-analytics)
